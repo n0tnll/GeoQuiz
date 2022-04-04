@@ -3,6 +3,7 @@
     <string name="btn_true">true</string>
     <string name="btn_false">false</string>
     <string name="btn_next">next</string>
+    <string name="btn_back">back</string>
     <string name="question_australia">Canberra is the capital of Australia.</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
@@ -13,7 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
-    private lateinit var nextButton: Button
+    private lateinit var nextButton: ImageButton
+    private lateinit var backButton: ImageButton
     private lateinit var textViewQuestion: TextView
 
     private val questionBank = listOf(
@@ -34,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         trueButton = findViewById(R.id.btnTrue)
         falseButton = findViewById(R.id.btnFalse)
         nextButton = findViewById(R.id.btnNext)
+        backButton = findViewById(R.id.btnBack)
         textViewQuestion = findViewById(R.id.txtViewQuestion)
+
 
         trueButton.setOnClickListener { view: View ->
             checkAnswer(true)
@@ -47,6 +51,16 @@ class MainActivity : AppCompatActivity() {
         nextButton.setOnClickListener { view: View ->
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
+        }
+
+        backButton.setOnClickListener { view: View ->
+            currentIndex = (currentIndex - 1) % questionBank.size
+            if (currentIndex < 0) currentIndex = questionBank.size - 1
+            updateQuestion()
+        }
+
+        textViewQuestion.setOnClickListener { view: View ->
+            nextQuestion()
         }
 
     }
@@ -63,5 +77,10 @@ class MainActivity : AppCompatActivity() {
         else
             R.string.incorrect_toast
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun nextQuestion() {
+        currentIndex = (currentIndex + 1) % questionBank.size
+        updateQuestion()
     }
 }
