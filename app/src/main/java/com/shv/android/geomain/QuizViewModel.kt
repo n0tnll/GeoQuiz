@@ -1,7 +1,5 @@
 package com.shv.android.geomain
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 
 private const val TAG = "QuizViewModel"
@@ -10,6 +8,9 @@ class QuizViewModel : ViewModel() {
 
     var currentIndex = 0
     var count = 0
+    var isCheater = false
+    var cheatingCount = 0
+    var hintCount = 3
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -39,4 +40,7 @@ class QuizViewModel : ViewModel() {
 
     fun summary(count: Int) =
         "Correct: ${count * 100 / questionBankSize}%"
+
+    fun summaryCheating(count: Int) =
+        "Cheating times: $cheatingCount"
 }
